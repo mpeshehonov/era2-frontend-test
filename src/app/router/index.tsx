@@ -9,6 +9,7 @@ import AgentsLandingPage from "@/pages/AgentsLandingPage";
 import ToolkitPage from "@/pages/ToolkitPage";
 import HistoryPage from "@/pages/HistoryPage";
 import PricingPage from "@/pages/PricingPage";
+import QueuePage from "@/pages/QueuePage";
 import AuthPage from "@/pages/AuthPage";
 import StudiosPage from "@/pages/StudiosPage";
 import TextGenerationPage from "@/pages/TextGenerationPage";
@@ -29,6 +30,7 @@ const routes: Record<string, React.ComponentType> = {
   "/studios": StudiosPage,
   "/toolkit": ToolkitPage,
   "/history": HistoryPage,
+  "/queue": QueuePage,
   "/pricing": PricingPage,
   "/auth": AuthPage,
   "/tools/text-generation": TextGenerationPage,

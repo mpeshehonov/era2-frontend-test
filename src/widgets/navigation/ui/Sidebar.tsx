@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@/shared/routing";
 import {
-  Home, Image, Video, MessageSquare, Mic, Bot, LayoutGrid, Layers,
+  Home, Image, Video, MessageSquare, Mic, Bot, LayoutGrid, Layers, ListTodo,
   CreditCard, History, ChevronLeft, ChevronDown, X, ArrowRight, Gem, Plus, Gift, Copy,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -55,6 +55,7 @@ const toolItems: Array<{ icon: React.ElementType; label: string; path: string; b
 ];
 
 const bottomItems = [
+  { icon: ListTodo, label: "Очередь", path: "/queue" },
   { icon: CreditCard, label: "Тарифы", path: "/pricing" },
   { icon: History, label: "История", path: "/history" },
 ];

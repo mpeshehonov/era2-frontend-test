@@ -1,5 +1,5 @@
-import { Link } from "@/shared/routing";
-import { Clock, Menu, Moon, Search, Sun } from "lucide-react";
+import { Link, useLocation } from "@/shared/routing";
+import { Clock, ListTodo, Menu, Moon, Search, Sun } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { useTheme } from "@/features/theme-switcher";
 import { useAuth } from "@/features/auth";
@@ -22,10 +22,12 @@ export function Header({ onToggleSidebar, showBurger = true }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
   const { isAuthed } = useAuth();
   const { setOpen } = useCommandPalette();
+  const { pathname } = useLocation();
+  const showPromo = pathname !== "/queue";
 
   return (
     <>
-      {!isAuthed && <PromoBanner />}
+      {!isAuthed && showPromo && <PromoBanner />}
       <header className="sticky top-0 z-40 h-16 flex items-center justify-between px-4 md:px-6 bg-background/85 backdrop-blur-md border-b border-border" style={{ height: "var(--header-height)" }}>
       {/* Left: burger + logo */}
       <div className="flex items-center gap-3">
@@ -86,6 +88,13 @@ export function Header({ onToggleSidebar, showBurger = true }: HeaderProps) {
 
         {/* History (desktop) */}
         <Link
+          to="/queue"
+          className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+        >
+          <ListTodo className="h-3.5 w-3.5" />
+          Очередь
+        </Link>
+        <Link
           to="/history"
           className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
         >
@@ -94,7 +103,7 @@ export function Header({ onToggleSidebar, showBurger = true }: HeaderProps) {
         </Link>
 
         {/* Promo (desktop only) */}
-        {PROMO_ACTIVE && (
+        {PROMO_ACTIVE && showPromo && (
           <Link
             to="/pricing"
             className="hidden xl:inline-flex items-center gap-2 h-9 px-3 bg-[hsl(var(--accent))] border border-primary/30 rounded-full text-sm font-medium hover:bg-primary/20 transition-colors"

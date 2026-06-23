@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { useAuth } from "@/features/auth";
 import { useNavigate } from "@/shared/routing";
+import { GoogleIcon, TelegramIcon, VkIcon, YandexIcon } from "@/shared/ui/icons";
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from "lucide-react";
 
 const AuthPage = () => {
@@ -35,7 +37,7 @@ const AuthPage = () => {
     document.title = mode === "login" ? "ERA2 — Вход" : "ERA2 — Регистрация";
   }, [mode]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     login();
     navigate({ to: "/" });
@@ -46,7 +48,7 @@ const AuthPage = () => {
     navigate({ to: "/" });
   };
 
-  const SocialButton = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
+  const SocialButton = ({ icon, label }: { icon: ReactNode; label: string }) => (
     <button
       type="button"
       onClick={handleSocial}
@@ -120,10 +122,10 @@ const AuthPage = () => {
 
         {/* Social buttons */}
         <div className="grid grid-cols-2 gap-2.5 mb-5">
-          <SocialButton icon={<span className="text-base">✈️</span>} label="Telegram" />
-          <SocialButton icon={<span className="text-base font-bold text-[#FC3F1D]">Я</span>} label="Яндекс" />
-          <SocialButton icon={<span className="text-base">G</span>} label="Google" />
-          <SocialButton icon={<span className="text-base font-bold text-[#0077FF]">VK</span>} label="VK" />
+          <SocialButton icon={<TelegramIcon />} label="Telegram" />
+          <SocialButton icon={<YandexIcon />} label="Яндекс" />
+          <SocialButton icon={<GoogleIcon />} label="Google" />
+          <SocialButton icon={<VkIcon />} label="VK" />
         </div>
 
         {/* Divider */}
